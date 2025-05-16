@@ -1,0 +1,1717 @@
+:root {
+  --primary-color: #2c5914;
+  --secondary-color: #4caf50;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --sidebar-width: 280px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: block; /* Change from flex to block */
+  color: var(--text-color);
+  overflow-x: hidden;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.15)
+    ),
+    url("/static/images/Leaves Bg.jpeg") center/cover fixed;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-height: 100vh;
+}
+
+.main-container {
+  width: 100%;
+  overflow-x: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: linear-gradient(to bottom, var(--primary-color), #1a3a0a);
+  color: white;
+  height: 100vh;
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.nav-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background-color: var(--secondary-color);
+}
+
+.content {
+  margin-left: var(--sidebar-width);
+  padding: 20px;
+  width: calc(100% - var(--sidebar-width));
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Update form-container styles - remove hover effects */
+.form-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 800px;
+  width: 100%;
+  transition: none; /* Remove transition */
+}
+
+/* Remove form-container hover effect */
+.form-container:hover {
+  background: rgba(255, 255, 255, 0.2); /* Keep same as normal state */
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-container {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(240, 255, 240, 0.8);
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.advice {
+  background-color: rgba(240, 255, 240, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+  position: relative;
+  width: 100%;
+  padding: 2rem;
+}
+
+.advice h3 {
+  color: var(--primary-color);
+  font-size: 1.4em;
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.advice h3:first-child {
+  margin-top: 0;
+}
+
+.advice .list-item {
+  margin: 15px 0;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.advice .list-item:before {
+  position: absolute;
+  left: 0;
+}
+
+.advice .list-item.bullet:before {
+  content: "•";
+  color: var(--secondary-color);
+}
+
+.advice strong {
+  color: var(--primary-color);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.advice p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.advice p strong {
+  color: var(--primary-color);
+  font-weight: 600;
+  display: inline;
+}
+
+.advice br {
+  display: block;
+  content: "";
+  margin-top: 0.5rem;
+}
+
+.advice-content {
+  min-height: 100px;
+  white-space: pre-wrap;
+}
+
+/* Add styles for clickable links in advice content */
+.advice-content a {
+  color: #2c5914;
+  text-decoration: none;
+  border-bottom: 1px dotted #2c5914;
+  transition: all 0.3s ease;
+}
+
+.advice-content a:hover {
+  color: #4caf50;
+  border-bottom-color: #4caf50;
+}
+
+.advice-content a:visited {
+  color: #1a3a0a;
+  border-bottom-color: #1a3a0a;
+}
+
+/* External link indicator */
+.advice-content a[target="_blank"]::after {
+  content: "↗";
+  font-size: 0.8em;
+  margin-left: 3px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.advice-content a[target="_blank"]:hover::after {
+  transform: translate(2px, -2px);
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--primary-color);
+  margin-left: 2px;
+  animation: blink 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px dashed var(--secondary-color);
+  border-radius: 8px;
+}
+
+.schemes-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.schemes-container h3 {
+  color: var(--primary-color);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 5px;
+}
+
+.schemes-container ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.schemes-container li {
+  position: relative;
+  padding: 5px 0;
+  padding-left: 20px;
+}
+
+.schemes-container li:before {
+  content: "•";
+  color: var(--secondary-color);
+  position: absolute;
+  left: 0;
+}
+
+.schemes-container p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.schemes-container a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.schemes-container a:hover {
+  text-decoration: underline;
+}
+
+.vine-decoration {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  background: url("/static/images/vine.png") repeat-y;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/static/images/banner-bg.png") center/cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4rem 0;
+  margin-bottom: 0;
+  background-attachment: fixed; /* Optional: creates parallax effect */
+  background-repeat: no-repeat;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.stat-content {
+  text-align: center;
+  z-index: 2;
+}
+
+.stat-number {
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Update service cards styling */
+.service-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  height: 100%;
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+}
+
+.service-card .card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.service-card i,
+.service-card h3,
+.service-card p,
+.service-card .btn {
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.services-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0rem;
+}
+
+.services-section,
+.stats-section {
+  width: 100%;
+  padding: 4rem 0;
+  background: linear-gradient(
+      rgba(240, 255, 240, 0.85),
+      rgba(240, 255, 240, 0.85)
+    ),
+    url("/static/images/Leaves Bg.jpeg") center/cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-section {
+  padding: 4rem 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.services-section {
+  background-blend-mode: normal;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Common card background styles */
+.stat-card,
+.form-container,
+.advice,
+.result-container {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+/* Remove any conflicting hover styles */
+.stat-card:hover,
+.form-container:hover {
+  background: none;
+  background-image: none;
+}
+
+/* Ensure text remains readable */
+.stat-card *,
+.form-container *,
+.advice * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar Styles */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-item {
+  white-space: nowrap;
+}
+
+.nav-link {
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+/* Make navbar container fluid on larger screens */
+@media (min-width: 992px) {
+  .navbar > .container {
+    max-width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Responsive navbar adjustments */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-item {
+    width: auto;
+  }
+}
+
+/* Active link styling */
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Responsive navbar */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    padding: 1rem 0;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0 !important;
+  }
+
+  .navbar-collapse {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    border-radius: 0 0 8px 8px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vine-decoration {
+    width: 50px;
+  }
+
+  .hero-section {
+    text-align: center;
+  }
+
+  .stat-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Remove leaf-bg class specific styles */
+.leaf-bg {
+  display: none;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.services-section {
+  background-blend-mode: multiply;
+  position: relative;
+  z-index: 1;
+}
+
+.container.py-5 {
+  background: none;
+}
+
+/* Update sections with glassmorphism */
+.stats-section,
+.services-section {
+  width: 100%;
+  padding: 4rem 0;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.15)
+    ),
+    url("/static/images/Leaves Bg.jpeg") center/cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Update sections with enhanced glassmorphism and blur */
+.stats-section,
+.services-section {
+  width: 100%;
+  padding: 4rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add blur effect container */
+.stats-section::before,
+.services-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("/static/images/Leaves Bg.jpeg") center/cover fixed;
+  filter: blur(2px); /* Reduced from 4px */
+  -webkit-filter: blur(2px); /* Reduced from 4px */
+  z-index: -2;
+}
+
+/* Add overlay with glassmorphism */
+.stats-section::after,
+.services-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.15),
+    /* Reduced opacity */ rgba(255, 255, 255, 0.1) /* Reduced opacity */
+  );
+  backdrop-filter: blur(3px); /* Reduced from 6px */
+  -webkit-backdrop-filter: blur(3px); /* Reduced from 6px */
+  z-index: -1;
+}
+
+/* Update card containers for sharper look */
+.stat-card,
+.service-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px); /* Reduced from 8px */
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* Update cards with glassmorphism */
+.stat-card,
+.service-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover,
+.service-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+}
+
+/* Ensure text remains readable with new transparency */
+.stat-card *,
+.service-card * {
+  color: var(--text-color);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Remove any conflicting background definitions */
+.services-section {
+  background-blend-mode: normal;
+}
+
+/* Custom button styles */
+.btn-custom-green {
+  background-color: #2c5914;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-custom-green:hover {
+  background-color: #1e3c0e;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Updated Footer Styles */
+.footer {
+  background: linear-gradient(
+    rgba(44, 89, 20, 0.95),
+    /* var(--primary-color) with opacity */ rgba(26, 58, 10, 0.95)
+      /* Darker shade */
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem 0;
+  margin-top: 3rem;
+  color: white;
+}
+
+.footer h5 {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--secondary-color);
+}
+
+.footer i {
+  color: var(--secondary-color);
+  margin-right: 0.5rem;
+}
+
+.footer hr {
+  border-color: rgba(255, 255, 255, 0.2);
+  margin: 1.5rem 0;
+}
+
+.footer small {
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.9;
+}
+
+/* Add these new styles */
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+}
+
+.custom-textarea {
+  border: 1px solid #dee2e6;
+  resize: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.custom-textarea:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+}
+
+.topic-btn {
+  transition: all 0.3s ease;
+}
+
+.topic-btn:hover {
+  transform: translateY(-2px);
+}
+
+.topic-card {
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.topic-card i {
+  margin-bottom: 1rem;
+}
+
+.topic-card h5 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.topic-card p {
+  color: #666;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+/* Add these new styles */
+
+.history-panel {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.history-item:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.history-item small {
+  font-size: 0.8rem;
+}
+
+#voiceInputBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#voiceInputBtn:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.topic-btn i {
+  margin-right: 5px;
+}
+
+#loadingIndicator {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Animation for results */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-container > * {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Add these new styles */
+
+.weather-dashboard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.weather-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.weather-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.weather-card:hover {
+  transform: translateY(-2px);
+}
+
+.weather-card h6 {
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.weather-content {
+  padding: 0.5rem 0;
+}
+
+.weather-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.weather-trend {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.weather-card small {
+  display: block;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.trend-up {
+  color: #28a745;
+}
+.trend-down {
+  color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .weather-dashboard {
+    position: static;
+    margin-bottom: 2rem;
+  }
+
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add these new styles */
+
+.weather-dashboard {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 15px;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.weather-card h6 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.weather-card .bi {
+  font-size: 1.2rem;
+}
+
+.weather-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.weather-trend {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.trend-up {
+  color: #28a745;
+}
+.trend-down {
+  color: #dc3545;
+}
+
+/* Add/update these styles */
+
+.main-content-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  background: none;
+  box-shadow: none;
+  transition: none;
+}
+
+.weather-dashboard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .weather-dashboard {
+    position: static !important;
+    margin-bottom: 2rem;
+  }
+}
+
+.input-section {
+  position: relative;
+  width: 100%;
+}
+
+/* Add these new styles */
+
+.page-title {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  color: #2c5914;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Add hover effect */
+.page-title:hover,
+.section-title:hover {
+  color: var(--secondary-color);
+  transition: color 0.3s ease;
+}
+
+/* Add these new styles for response UI */
+.advice {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.advice h3 {
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--secondary-color);
+  position: relative;
+}
+
+.advice h3::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.advice-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.advice-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.advice strong {
+  color: var(--primary-color);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.advice p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.advice ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.advice li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.advice li::before {
+  content: "•";
+  color: var(--secondary-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.result-container {
+  position: relative;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  z-index: 10;
+}
+
+.response-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.response-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.action-btn:hover {
+  background: rgba(44, 89, 20, 0.1);
+  transform: translateY(-2px);
+}
+
+.action-btn i {
+  font-size: 1.2rem;
+}
+
+/* Animation for new content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.advice-section {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+  animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+/* Add these new styles */
+
+.upload-area {
+  border: 2px dashed var(--secondary-color);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.upload-area:hover,
+.upload-area.highlight {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area label {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-area label:hover {
+  transform: translateY(-2px);
+}
+
+#image-preview {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+#image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.upload-area {
+  border: 2px dashed var(--secondary-color);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--primary-color);
+}
+
+.upload-area input[type="file"] {
+  display: none;
+}
+
+.upload-area label {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#image-preview {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.input-group-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: #dee2e6;
+}
+
+.input-group-text i {
+  color: var(--primary-color);
+}
+
+/* Enhanced scheme link styles */
+.scheme-link {
+  color: #2c5914;
+  text-decoration: none;
+  padding: 2px 4px;
+  border-radius: 3px;
+  border-bottom: 1px solid rgba(44, 89, 20, 0.3);
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin: 0 1px;
+}
+
+.scheme-link:hover {
+  color: #4caf50;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-bottom-color: #4caf50;
+  transform: translateY(-1px);
+}
+
+.scheme-link::after {
+  content: "↗";
+  font-size: 0.8em;
+  margin-left: 3px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.scheme-link:hover::after {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* Special styling for links in scheme sections */
+.advice-content .scheme-link {
+  font-weight: 500;
+}
+
+/* Enhanced scheme link styles */
+.scheme-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--primary-color);
+  transition: all 0.3s ease;
+  padding: 0 2px;
+}
+
+.scheme-link:hover {
+  color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 3px;
+}
+
+.scheme-link::after {
+  content: "↗";
+  font-size: 0.8em;
+  margin-left: 3px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.scheme-link:hover::after {
+  transform: translate(2px, -2px);
+}
+
+/* Enhanced Weather Card Styles */
+.weather-dashboard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.weather-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.weather-trend {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.trend-up {
+  color: #28a745;
+}
+.trend-down {
+  color: #dc3545;
+}
+
+.toast-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(44, 89, 20, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  z-index: 1000;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+}
+
+/* ...existing code... */
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+.weather-card h6 {
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.weather-card small {
+  display: block;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.weather-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0.5rem 0;
+}
+
+.weather-condition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weather-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+/* ...existing code... */
+
+/* ...existing code... */
+
+.crop-recommendations {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.crop-recommendations h5 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.crop-recommendations .advice-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ...existing code... */
+
+/* ...existing code... */
+
+.weather-text {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.weather-summary .card {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.weather-summary .card-title {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ...existing code... */
+
+.action-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.action-btn:hover {
+  background: rgba(44, 89, 20, 0.1);
+  transform: translateY(-2px);
+}
+
+.action-btn i {
+  font-size: 1.2rem;
+}
+
+.response-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ...existing code... */
+
+/* ...existing code... */
+
+.quick-access-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.features-list small {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.features-list i {
+  margin-right: 0.5rem;
+}
+
+/* ...existing code... */
+
+/* Enhanced Navbar Styles */
+.navbar {
+  background: rgba(44, 89, 20, 0.9) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 0;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(44, 89, 20, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  position: relative;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4caf50, transparent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+.nav-item {
+  position: relative;
+  margin: 0 0.2rem;
+}
+
+.nav-item i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover i {
+  transform: translateY(-2px) scale(1.1);
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  background-image: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-toggler-icon::before {
+  content: "\F479";
+  font-family: bootstrap-icons;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Gradient border animation */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #2c5914);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover::before {
+  opacity: 0.1;
+}
+
+/* Active link styling */
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #4caf50, #2c5914);
+}
+
+/* ...existing code... */

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Rotation - Smart Farming</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Smart Farming</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/agriculture">Agriculture Advice</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/water">Water Management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/image">Image Analysis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/disease">Disease Detection</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/bio-fertilizer">Bio Fertilizer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/schemes">Schemes & Loans</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <!-- Left Sidebar - Weather Dashboard -->
+        <div class="col-lg-3">
+          <div class="weather-dashboard sticky-top mb-4">
+            <div class="weather-header">
+              <h5 class="mb-3 d-flex align-items-center">
+                <i class="bi bi-cloud-sun me-2"></i>Local Weather
+              </h5>
+              <div class="search-box mb-3">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="weather-city"
+                    class="form-control form-control-sm"
+                    placeholder="Enter city name"
+                  />
+                  <button
+                    class="btn btn-outline-success btn-sm"
+                    onclick="getWeatherData()"
+                  >
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="weather-data" class="weather-cards" style="display: none">
+              <div class="weather-grid">
+                <div class="weather-card">
+                  <h6>
+                    <i class="bi bi-thermometer-half me-2"></i>Temperature
+                  </h6>
+                  <div id="temperature-data" class="weather-content"></div>
+                </div>
+                <div class="weather-card">
+                  <h6><i class="bi bi-droplet me-2"></i>Humidity</h6>
+                  <div id="humidity-data" class="weather-content"></div>
+                </div>
+                <div class="weather-card">
+                  <h6><i class="bi bi-cloud me-2"></i>Conditions</h6>
+                  <div id="conditions-data" class="weather-content"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-lg-9">
+          <div class="text-center mb-4 animate__animated animate__fadeIn">
+            <h1 class="page-title">Crop Rotation Planning</h1>
+            <p class="page-subtitle">
+              Get expert advice on optimal crop rotation sequences
+            </p>
+          </div>
+
+          <div
+            class="form-container glass-morphism animate__animated animate__fadeInUp"
+          >
+            <!-- Language and Voice Input Controls -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button
+                class="btn btn-outline-success btn-sm"
+                onclick="toggleSearchHistory()"
+              >
+                <i class="bi bi-clock-history"></i> View Search History
+              </button>
+              <select
+                id="language"
+                class="form-select form-select-sm"
+                style="width: auto"
+              >
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="te">తెలుగు</option>
+                <option value="ta">தமிழ்</option>
+              </select>
+            </div>
+
+            <!-- Search History Panel -->
+            <div
+              id="searchHistory"
+              class="history-panel mb-4"
+              style="display: none"
+            >
+              <div class="card glass-morphism">
+                <div class="card-header bg-transparent">
+                  <h5 class="mb-0">Recent Searches</h5>
+                </div>
+                <div class="card-body" id="historyList">
+                  <!-- History items will be added here dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Topics Section -->
+            <div class="quick-topics mb-4">
+              <h5 class="mb-3">Popular Topics:</h5>
+              <div class="d-flex flex-wrap gap-2">
+                <button
+                  class="btn btn-outline-success btn-sm topic-btn"
+                  onclick="insertTopic('paddy rotation patterns for a year')"
+                >
+                  <i class="bi bi-arrow-repeat"></i> Paddy Rotation
+                </button>
+                <button
+                  class="btn btn-outline-success btn-sm topic-btn"
+                  onclick="insertTopic('crop rotation for soil health improvement')"
+                >
+                  <i class="bi bi-flower1"></i> Soil Health
+                </button>
+                <button
+                  class="btn btn-outline-success btn-sm topic-btn"
+                  onclick="insertTopic('seasonal crop rotation planning')"
+                >
+                  <i class="bi bi-calendar3"></i> Seasonal Planning
+                </button>
+                <button
+                  class="btn btn-outline-success btn-sm topic-btn"
+                  onclick="insertTopic('pest control through rotation')"
+                >
+                  <i class="bi bi-bug"></i> Pest Management
+                </button>
+              </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-section mb-4">
+              <div class="d-flex gap-2">
+                <button
+                  id="voiceInputBtn"
+                  class="btn btn-outline-success"
+                  onclick="startVoiceInput('rotation-question')"
+                >
+                  <i class="bi bi-mic"></i>
+                </button>
+                <div class="flex-grow-1">
+                  <textarea
+                    id="rotation-question"
+                    class="form-control custom-textarea"
+                    placeholder="Ask your crop rotation related question..."
+                    rows="4"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mb-4">
+              <button
+                onclick="getCropRotationAdvice()"
+                class="btn btn-success btn-lg px-4"
+              >
+                <i class="bi bi-search me-2"></i>Get Rotation Advice
+              </button>
+              <button
+                onclick="clearForm()"
+                class="btn btn-outline-secondary btn-lg px-4 ms-2"
+              >
+                <i class="bi bi-x-circle me-2"></i>Clear
+              </button>
+            </div>
+
+            <!-- Results Area -->
+            <div id="rotation-result" class="result-container mt-4">
+              <div class="loading-overlay" style="display: none">
+                <div class="spinner-border text-success mb-3" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="text-success">Analyzing rotation patterns...</p>
+              </div>
+
+              <div class="advice" style="display: none">
+                <div class="response-header">
+                  <h3 class="response-title">Rotation Plan</h3>
+                  <div class="response-actions">
+                    <button
+                      class="action-btn"
+                      onclick="copyResponse()"
+                      title="Copy"
+                    >
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                    <button
+                      class="action-btn"
+                      onclick="shareResponse()"
+                      title="Share"
+                    >
+                      <i class="bi bi-share"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="advice-content">
+                  <!-- Content will be inserted here -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Topics -->
+          <div class="featured-topics mt-5">
+            <h4 class="section-title">Benefits of Crop Rotation</h4>
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="topic-card">
+                  <i class="bi bi-flower3 fs-1 text-success"></i>
+                  <h5>Soil Health</h5>
+                  <p>Improves soil structure and fertility</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="topic-card">
+                  <i class="bi bi-bug fs-1 text-success"></i>
+                  <h5>Pest Control</h5>
+                  <p>Natural pest and disease management</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="topic-card">
+                  <i class="bi bi-graph-up fs-1 text-success"></i>
+                  <h5>Yield Increase</h5>
+                  <p>Better crop productivity</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Smart Farming AI</h5>
+            <p>Empowering agriculture through artificial intelligence</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>
+              <i class="bi bi-envelope"></i> btechit221179@smvec.ac.in<br />
+              <i class="bi bi-telephone"></i> +91 8667866489<br />
+              <i class="bi bi-geo-alt"></i> Madagadipet, Puducherry
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/agriculture">Agriculture Advice</a></li>
+              <li><a href="/water">Water Management</a></li>
+              <li><a href="/schemes">Schemes & Loans</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="text-center">
+          <small
+            >&copy; 2024 Smart Farming AI. Commercial use of this chatbot
+            requires authorization.</small
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/main.js"></script>
+    <script>
+      function insertTopic(topic) {
+        const textarea = document.getElementById("rotation-question");
+        textarea.value = `Please suggest a crop rotation plan for ${topic}`;
+        textarea.focus();
+      }
+
+      // Add search history management functions
+      function addToHistory(question) {
+        const history = JSON.parse(
+          localStorage.getItem("rotationHistory") || "[]"
+        );
+        history.unshift({
+          question,
+          timestamp: new Date().toISOString(),
+        });
+        if (history.length > 5) history.pop(); // Keep only last 5 searches
+        localStorage.setItem("rotationHistory", JSON.stringify(history));
+        updateHistoryDisplay();
+      }
+
+      function updateHistoryDisplay() {
+        const history = JSON.parse(
+          localStorage.getItem("rotationHistory") || "[]"
+        );
+        const historyList = document.getElementById("historyList");
+        if (!historyList) return;
+
+        historyList.innerHTML = history
+          .map(
+            (item) => `
+            <div class="history-item" onclick="loadHistoryItem('${
+              item.question
+            }')">
+                <small class="text-muted">${new Date(
+                  item.timestamp
+                ).toLocaleString()}</small>
+                <p class="mb-0">${item.question}</p>
+            </div>
+        `
+          )
+          .join("");
+      }
+
+      function loadHistoryItem(question) {
+        document.getElementById("rotation-question").value = question;
+      }
+
+      function toggleSearchHistory() {
+        const historyPanel = document.getElementById("searchHistory");
+        historyPanel.style.display =
+          historyPanel.style.display === "none" ? "block" : "none";
+      }
+
+      function clearForm() {
+        document.getElementById("rotation-question").value = "";
+        document.querySelector(".advice").style.display = "none";
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        updateHistoryDisplay();
+      });
+
+      // Make functions globally available
+      window.addToHistory = addToHistory;
+      window.updateHistoryDisplay = updateHistoryDisplay;
+      window.loadHistoryItem = loadHistoryItem;
+      window.toggleSearchHistory = toggleSearchHistory;
+    </script>
+  </body>
+</html>

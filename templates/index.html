@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Farming Advisor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <div class="logo-container">
+            <img src="/static/images/logo.png" alt="Smart Farming" class="logo">
+            <span>Smart Farming</span>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house"></i> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/agriculture"><i class="bi bi-tree"></i> Agriculture</a></li>
+            <li class="nav-item"><a class="nav-link" href="/water"><i class="bi bi-droplet"></i> Water</a></li>
+            <li class="nav-item"><a class="nav-link" href="/image"><i class="bi bi-image"></i> Analysis</a></li>
+            <li class="nav-item"><a class="nav-link" href="/disease"><i class="bi bi-bug"></i> Disease</a></li>
+            <li class="nav-item"><a class="nav-link" href="/bio-fertilizer"><i class="bi bi-flower1"></i> Bio Fertilizer</a></li>
+            <li class="nav-item"><a class="nav-link" href="/schemes"><i class="bi bi-cash-coin"></i> Schemes</a></li>
+          
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="vine-decoration"></div>
+
+    <div class="main-container">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="row align-items-center min-vh-100">
+            <div class="col-md-8 text-white">
+              <h1 class="display-3 fw-bold">AI Agriculture Advisor</h1>
+              <p class="lead">
+                Empowering farmers with AI-driven agricultural insights
+              </p>
+              <div class="mt-4">
+                <a href="#services" class="btn btn-light btn-lg me-3"
+                  >Explore Services</a
+                >
+                <a href="#contact" class="btn btn-outline-light btn-lg"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section py-5">
+        <div class="container">
+          <div class="row justify-content-center g-4">
+            <div class="col-md-3">
+              <div class="stat-card text-center">
+                <div class="stat-content">
+                  <h3 class="stat-number">8</h3>
+                  <p class="stat-label">Smart Services</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stat-card text-center">
+                <div class="stat-content">
+                  <h3 class="stat-number">24/7</h3>
+                  <p class="stat-label">Support</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stat-card text-center">
+                <div class="stat-content">
+                  <h3 class="stat-number">100%</</h3>
+                  <p class="stat-label">Satisfaction</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="services-section py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Our Services</h2>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-tree"></i>
+                  <h3>Agriculture Advice</h3>
+                  <p>Get expert guidance for your farming needs</p>
+                  <a href="{{ url_for('agriculture') }}" class="btn btn-custom-green">Open Chat</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-droplet"></i>
+                  <h3>Water Management</h3>
+                  <p>Optimize your irrigation practices</p>
+                  <a href="{{ url_for('water') }}" class="btn btn-custom-green">Open Chat</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-search"></i>
+                  <h3>Image Analysis</h3>
+                  <p>Analyze crop conditions with AI</p>
+                  <a href="{{ url_for('image') }}" class="btn btn-custom-green">Open Chat</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-heart-pulse"></i>
+                  <h3>Disease Detection</h3>
+                  <p>Identify plant diseases early</p>
+                  <a href="{{ url_for('disease') }}" class="btn btn-custom-green">Open Chat</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-flower1"></i>
+                  <h3>Bio Fertilizer</h3>
+                  <p>Get sustainable fertilizer recommendations</p>
+                  <a href="{{ url_for('bio_fertilizer_page') }}" class="btn btn-custom-green">Open Chat</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-cash-coin"></i>
+                  <h3>Schemes & Loans</h3>
+                  <p>Access financial assistance information</p>
+                  <a href="{{ url_for('schemes_page') }}" class="btn btn-custom-green">Open Chat</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- New Quick Access Section -->
+      <section class="quick-access-section py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Essential Farming Tools</h2>
+          <div class="row justify-content-center g-4">
+            <!-- Crop Recommendations Card -->
+            <div class="col-md-6">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-list-check fs-1 text-success mb-3"></i>
+                  <h3>Crop Recommendations</h3>
+                  <p>Get personalized crop suggestions based on weather and soil conditions</p>
+                  <div class="features-list mb-4">
+                    <small class="d-block mb-2"><i class="bi bi-check2-circle text-success"></i> Weather-based analysis</small>
+                    <small class="d-block mb-2"><i class="bi bi-check2-circle text-success"></i> Soil-specific advice</small>
+                    <small class="d-block"><i class="bi bi-check2-circle text-success"></i> Seasonal recommendations</small>
+                  </div>
+                  <a href="{{ url_for('crop_recommendations_page') }}" class="btn btn-custom-green">
+                    Get Recommendations <i class="bi bi-arrow-right ms-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Crop Rotation Card -->
+            <div class="col-md-6">
+              <div class="service-card h-100">
+                <div class="card-content">
+                  <i class="bi bi-arrow-repeat fs-1 text-success mb-3"></i>
+                  <h3>Crop Rotation Guide</h3>
+                  <p>Learn about optimal crop rotation patterns for sustainable farming</p>
+                  <div class="features-list mb-4">
+                    <small class="d-block mb-2"><i class="bi bi-check2-circle text-success"></i> Rotation schedules</small>
+                    <small class="d-block mb-2"><i class="bi bi-check2-circle text-success"></i> Soil health benefits</small>
+                    <small class="d-block"><i class="bi bi-check2-circle text-success"></i> Pest management</small>
+                  </div>
+                  <a href="{{ url_for('crop_rotation_page') }}" class="btn btn-custom-green">
+                    View Guide <i class="bi bi-arrow-right ms-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/main.js"></script>
+    <script>
+      window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Smooth scroll to footer when Contact Us is clicked
+      document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#contact').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    </script>
+
+    <!-- Footer Section -->
+     
+    <footer class="footer mt-auto py-3" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Smart Farming AI</h5>
+            <p>Empowering agriculture through artificial intelligence</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>
+              <i class="bi bi-envelope"></i> btechit221179@smvec.ac.in<br />
+              <i class="bi bi-telephone"></i>+91 8667866489<br />
+              <i class="bi bi-geo-alt"></i> Madagadipet, Puducherry
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/agriculture">Agriculture Advice</a></li>
+              <li><a href="/water">Water Management</a></li>
+              <li><a href="/schemes">Schemes & Loans</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="text-center">
+          <small
+            >&copy; 2024 Smart Farming AI. Commercial use of this chatbot
+            requires authorization.</small
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
